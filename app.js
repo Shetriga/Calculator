@@ -18,7 +18,22 @@ function clearAll() {
 let numbersArray = document.getElementsByClassName("number");
 for (let i = 0; i < numbersArray.length; i++) {
     numbersArray[i].addEventListener("click", () => {
-        document.getElementById("screen").value += numbersArray[i].textContent;
+        if (numbersArray[i].textContent === "0") {
+            if (document.getElementById('screen').value.length === 1 && document.getElementById("screen").value[0] === "0") {
+                alert(`Sorry you have entered 0 once!`);
+            } else if (document.getElementById("screen").value.length > 1 
+                        && (document.getElementById("screen").value[document.getElementById("screen").value.length - 2] === "+" ||
+                            document.getElementById("screen").value[document.getElementById("screen").value.length - 2] === "-" ||
+                            document.getElementById("screen").value[document.getElementById("screen").value.length - 2] === "/" ||
+                            document.getElementById("screen").value[document.getElementById("screen").value.length - 2] === "*")
+                        && document.getElementById("screen").value[document.getElementById("screen").value.length - 1] === "0") {
+                            alert(`Sorry you have already typed a '0' once after the operator`);
+            } else {
+                document.getElementById("screen").value += numbersArray[i].textContent;
+            }
+        } else {
+            document.getElementById("screen").value += numbersArray[i].textContent;   
+        }
     });
 }
 let operatorsArray = document.getElementsByClassName("operator");
