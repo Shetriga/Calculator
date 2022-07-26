@@ -65,6 +65,7 @@ function multiple_operations() {
         if (i === operators.length - 1) {
             // console.log(`Last Iteration`);
             operate(text, operators[i]);
+            // alert(`Final answer is ${parseInt(text)}`)
         } else {
             // console.log(operators[i]);
             let current_operator = text.indexOf(operators[i]);
@@ -111,7 +112,12 @@ function operate(sliced_portion, operator_symbol) {
         result = multiply(n1, n2);
     } else {
         console.log(`Result is ${divide(n1, n2)}`);
+        result = divide(n1, n2);
     }
-    return result.toString();
     // clearAll();
+    displayResult(result);
+    return result.toString();
+}
+function displayResult(v) {
+    document.getElementById("screen").value = v;
 }
